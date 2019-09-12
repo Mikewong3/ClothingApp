@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+
+<body>
+    <!-- <form onsubmit="return getPictureDetails();"> -->
+    <form id="AddClothing" method="POST" action="http://localhost:3000/myclothing">
+        <label>Enter clothing details:</label>
+        <select name="Type" id="Type">
+            <option value="pants">pants</option>
+            <option value="t-shirts">tshirts</option>
+            <option value="jackets">jackets</option>
+            <option value="socks">socks</option>
+        </select>
+        <br>
+        <input name="Brand" type="text" value="Enter Brand" id="Brand">
+        <br>
+        <input name="ClothingURL" type="text" value="Enter URL" id="ClothingURL">
+        <br>
+        <input name="clothingIMG" id="clothingIMG" type="file" accept="image/png, image/jpeg">
+        <br>
+        <input type="submit" value="CLothing Submit">
+        <br>
+    </form>
+    <input type="submit" value="Submit" onclick="getPictureDetails()">
+    <form method="GET" action="http://localhost:3000/myclothing">
+        <input type="submit" value="Get Data">
+    </form>
+
+    <h1 id="test">Hello</h1>
+
+    <h1>{{name}}</h1>
+    <h2>{{test}}</h2>
+    <img id="output" />
+    <script src="index.js"></script>
+</body>
+
+</html>
