@@ -7,9 +7,16 @@
     <title>Clothing App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="index.js"></script>
 </head>
 
 <body>
+    <!-- <script src="index.js"></script> -->
+
     <!-- <form onsubmit="return getPictureDetails();"> -->
     <form id="AddClothing" method="POST" action="./myclothing">
         <label>Enter clothing details:</label>
@@ -26,10 +33,10 @@
         <br>
         <input name="clothingIMG" id="clothingIMG" type="file" accept="image/png, image/jpeg">
         <br>
-        <input type="submit" value="CLothing Submit">
+        <!-- <input type="submit" value="CLothing Submit" class="btn"> -->
+        <button type="submit" class="btn-primary">Submit Clothing</button>
         <br>
     </form>
-    <input type="submit" value="Submit" onclick="getPictureDetails()">
     <form method="GET" action="http://localhost:3000/myclothing">
         <input type="submit" value="Get Data">
     </form>
@@ -42,8 +49,7 @@
         </li>
         {{/items}}
     </ul>
-    <input id="deleteBt" type=" button " onClick="showData() " value="Datas ">
-    <script src="index.js "></script>
+    <button id="deleteBt" onClick="showData()" value="Datas ">Test me</button>
 </body>
 
 </html>

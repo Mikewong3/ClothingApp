@@ -5,11 +5,12 @@ var mysql = require('mysql');
 // let connection = require("./connection");
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(express.static('Front-End'))
 let mustacheExpress = require("mustache-express");
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
 app.set('views', __dirname + '..\\..\\Front-End');
+app.use(express.static(__dirname + "..\\..\\public"));
 
 let connection = mysql.createConnection({
     host: 'localhost',
