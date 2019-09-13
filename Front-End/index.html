@@ -11,7 +11,7 @@
 
 <body>
     <!-- <form onsubmit="return getPictureDetails();"> -->
-    <form id="AddClothing" method="POST" action="http://localhost:3000/myclothing">
+    <form id="AddClothing" method="POST" action="./myclothing">
         <label>Enter clothing details:</label>
         <select name="Type" id="Type">
             <option value="pants">pants</option>
@@ -33,16 +33,17 @@
     <form method="GET" action="http://localhost:3000/myclothing">
         <input type="submit" value="Get Data">
     </form>
-
-    <h1 id="test">Hello</h1>
     <ul>
         {{#items}}
-        <li>{{type}},{{brand}},{{url}}</li>
+        <li>{{id}}, {{type}},{{brand}},{{url}}
+            <form method="GET" action="./myclothing/delete/{{id}}">
+                <input type="submit" value="Delete">
+            </form>
+        </li>
         {{/items}}
     </ul>
-    <img id="output" />
-    <input type="button" onClick="showData()" value="Datas">
-    <script src="index.js"></script>
+    <input id="deleteBt" type=" button " onClick="showData() " value="Datas ">
+    <script src="index.js "></script>
 </body>
 
 </html>

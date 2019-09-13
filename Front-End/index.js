@@ -5,11 +5,12 @@ function getPictureDetails() {
     var file = document.getElementById('clothingIMG').files[0];
     console.log(file);
 };
-// function loadFile(event) {
-//     var output = document.getElementById('output');
-//     output.src = URL.createObjectURL(event.target.files[0]);
-// };
-function showData() {
-    alert("Hello");
-    console.log(results.toString());
+function loadFile(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
 };
+function deleteItem() {
+    alert("It worke");
+    let id = $('#id');
+    console.log(id);
+}

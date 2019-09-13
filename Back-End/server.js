@@ -18,10 +18,16 @@ let connection = mysql.createConnection({
     database: 'firstdb'
 });
 connection.connect();
-var results;
+
 app.route('/')
     .get(function (req, res) {
-        res.render("index", { name: "Mike wong" })
+        connection.query('Select * from clothing', function (err, results) {
+            if (err)
+                throw err;
+            else {
+                res.render("index", { items: results })
+            }
+        });
     })
 app.route('/myclothing')
     .get(function (req, res) {
@@ -29,12 +35,7 @@ app.route('/myclothing')
             if (err)
                 throw err;
             else {
-                // var tmp = '<ul>{{#.}}<li>{{name}}</li>{{/.}}</ul>';
-                // res.render("index", results);        
-                // var temp = JSON.parse(results);
-                res.render('index', { items: results });
-                //console.log(results);
-
+                res.redirect("/");
             }
         })
     })
@@ -48,13 +49,25 @@ app.route('/myclothing')
         param[2] = req.body.ClothingURL;
         param[3] = output + req.body.clothingIMG
         console.log(param);
-        connection.query('insert into clothing values(?,?,?,?)', param, function (err, results) {
+        connection.query('insert into clothing(type,brand,url,img) values(?,?,?,?)', param, function (err, results) {
             if (err)
                 throw err;
             else {
                 console.log(results);
             }
         })
-        res.render("index");
+        res.redirect("/");
+    });
+app.route("/myclothing/delete/:id")
+    .get(function (req, res) {
+        console.log(req.params.id);
+        connection.query('DELETE FROM clothing where id=?', req.params.id, function (err, results) {
+            if (err)
+                throw err;
+            else {
+                console.log(results);
+            }
+        })
+        res.redirect("/");
     });
 app.listen(3000);
