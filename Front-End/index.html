@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>]</title>
+    <title>Clothing App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
 </head>
@@ -35,10 +35,13 @@
     </form>
 
     <h1 id="test">Hello</h1>
-
-    <h1>{{name}}</h1>
-    <h2>{{test}}</h2>
+    <ul>
+        {{#items}}
+        <li>{{type}},{{brand}},{{url}}</li>
+        {{/items}}
+    </ul>
     <img id="output" />
+    <input type="button" onClick="showData()" value="Datas">
     <script src="index.js"></script>
 </body>
 

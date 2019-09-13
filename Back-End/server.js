@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 app.use(express.urlencoded())
 var mysql = require('mysql');
+// let connection = require("./connection");
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -9,7 +10,6 @@ let mustacheExpress = require("mustache-express");
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
 app.set('views', __dirname + '..\\..\\Front-End');
-
 
 let connection = mysql.createConnection({
     host: 'localhost',
@@ -29,10 +29,14 @@ app.route('/myclothing')
             if (err)
                 throw err;
             else {
-                console.log(results);
+                // var tmp = '<ul>{{#.}}<li>{{name}}</li>{{/.}}</ul>';
+                // res.render("index", results);        
+                // var temp = JSON.parse(results);
+                res.render('index', { items: results });
+                //console.log(results);
+
             }
         })
-        res.redirect("/")
     })
     .post(function (req, res) {
         console.log("CUrrently Inserting");
@@ -51,6 +55,6 @@ app.route('/myclothing')
                 console.log(results);
             }
         })
-        res.redirect("/");
+        res.render("index");
     });
 app.listen(3000);
