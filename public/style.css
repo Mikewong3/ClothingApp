@@ -1,3 +1,15 @@
-#test{
-    background-color: red; 
+#addForm {
+  box-shadow: 13px 10px 10px 1px rgba(214, 214, 214, 1);
+  margin: 20px;
+  background-color: #fffafa;
+  padding: 10px;
+}
+#dataContainer {
+  box-shadow: 13px 10px 10px 1px rgba(214, 214, 214, 1);
+}
+#deleteBtn {
+  float: right;
+}
+#clothItem {
+  list-style-type: none;
 }
