@@ -13,7 +13,7 @@ app.set("views", "/Users/mike/documents/ClothingApp/Front-End");
 //app.set('views', __dirname + '..\\..\\Front-End');
 //app.use(express.static(__dirname + "..\\..\\public"));
 app.use(express.static("/Users/mike/documents/ClothingApp/public"));
-
+app.use(express.static("/Users/mike/documents/ClothingApp/public/images"));
 let connection = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -77,6 +77,17 @@ app.route("/myclothing/delete/:id").get(function(req, res) {
       console.log(results);
     }
   });
+  res.redirect("/");
+});
+app.get("/myclothing/:clothingType", function(req, res) {
+  console.log("Fetching :" + req.params.clothingType);
+  connection.query(
+    "Select * from clothing where type = ?",
+    req.params.clothingType,
+    function(err, result) {
+      console.log(result);
+    }
+  );
   res.redirect("/");
 });
 app.listen(3000);

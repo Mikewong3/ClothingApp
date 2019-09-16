@@ -79,20 +79,28 @@
             <li>
               ID: {{ id }} </br>
             {{ type }}/{{ brand }}/{{ url }}
-              <!-- <button onclick="deleteItem({{id}})">Delete</button> -->
-              <img src="../public/images/delete-16.png" href="./myclothing/delete/{{ id }}" alt="">
+            <a href="./myclothing/delete/{{id}}">
+            <img src="./delete.png" alt="deleteButton">
+        </a>
+              <!-- <img src="./delete.png" href="./myclothing/delete/{{ id }}" alt=""> -->
             </li>
-            <!-- <form method="GET" action="./myclothing/delete/{{ id }}" class="form-inline" id="deleteBtn">
+            <form method="GET" action="./myclothing/delete/{{ id }}" class="form-inline" id="deleteBtn">
                 <input type="submit" value="Delete" />
-              </form> -->
+              </form> 
             {{/items}}
           </ul>
         </div>
       </div>
     </div>
-
     <form method="GET" action="http://localhost:3000/myclothing">
       <input type="submit" value="Get Data" />
     </form>
+    <ul class="nav nav-pills">
+            <li class="active"><a href="./myclothing">All</a></li>
+            <li><a href="./myclothing/pants">Pants</a></li>
+            <li><a href="./myclothing/t-shirts">T-shirts</a></li>
+            <li><a href="./myclothing/jackets">Jackets</a></li>
+            <li><a href="./myclothing/socks">socks</a></li>
+        </ul>
   </body>
 </html>
