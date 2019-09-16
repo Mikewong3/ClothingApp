@@ -1,51 +1,35 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Clothing App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" media="screen" href="/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="index.js"></script>
-  </head>
 
-  <body>
-    <div class="row">
-      <div class="col-3" id="addForm">
-        <!--This section is the second for the adding clothes section-->
-        <form id="AddClothing" method="POST" action="./myclothing">
-          <label>Enter clothing details:</label>
-          <div class="form-group">
-            <select class="form-control" name="Type" id="Type">
-              <option value="pants">pants</option>
-              <option value="t-shirts">tshirts</option>
-              <option value="jackets">jackets</option>
-              <option value="socks">socks</option>
-            </select>
-            <input
-              class="form-control"
-              name="Brand"
-              type="text"
-              id="Brand"
-              value=""
-              placeholder="Enter Brand"
-            />
-            <input
-              name="ClothingURL"
-              class="form-control"
-              type="text"
-              id="ClothingURL"
-              value=""
-              placeholder="Enter Clothing URL"
-            />
-            <!-- <input
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Clothing App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/style.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="index.js"></script>
+</head>
+
+<body>
+  <div class="row">
+    <div class="col-3" id="addForm">
+      <!--This section is the second for the adding clothes section-->
+      <form id="AddClothing" method="POST" action="./myclothing">
+        <label>Enter clothing details:</label>
+        <div class="form-group">
+          <select class="form-control" name="Type" id="Type">
+            <option value="pants">pants</option>
+            <option value="t-shirts">tshirts</option>
+            <option value="jackets">jackets</option>
+            <option value="socks">socks</option>
+          </select>
+          <input class="form-control" name="Brand" type="text" id="Brand" value="" placeholder="Enter Brand" />
+          <input name="ClothingURL" class="form-control" type="text" id="ClothingURL" value="" placeholder="Enter Clothing URL" />
+          <!-- <input
               name="clothingIMG"
               id="clothingIMG"
               type="file"
@@ -53,54 +37,61 @@
               accept="image/png, image/jpeg"
               value=""
             /> -->
-            <label class="btn btn-primary">
-              Enter img
-              <input
-                name="clothingIMG"
-                id="clothingIMG"
-                accept="image/png, image/jpeg"
-                value=""
-                type="file"
-                style="display: none;"
-              />
-            </label>
-          </div>
-          <button type="submit" class="btn btn-outline-primary">
-            Submit Clothing
-          </button>
-          <br />
-        </form>
+          <label class="btn btn-primary">
+            Enter img
+            <input name="clothingIMG" id="clothingIMG" accept="image/png, image/jpeg" value="" type="file" style="display: none;" />
+          </label>
+        </div>
+        <button type="submit" class="btn btn-outline-primary">
+          Submit Clothing
+        </button>
+        <br />
+      </form>
+    </div>
+    <!--This section is for displaying the clothes in the databases -->
+    <div class="col-6" id="dataContainer">
+      <div class="container">
+        <ul class="nav nav-pills">
+          <li class="nav-item active">
+            <a class="nav-link active" href="/myclothing">All</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./myclothing/pants">Pants</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./myclothing/t-shirts">T-shirts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./myclothing/jackets">Jackets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./myclothing/socks">socks</a>
+          </li>
+        </ul>
       </div>
-      <!--This section is for displaying the clothes in the databases -->
-      <div class="col-6" id="dataContainer">
-        <div id="dataItem">
-          <ul id="clothItem">
-            {{#items}}
-            <li>
-              ID: {{ id }} </br>
+      <div id="dataItem">
+        <ul id="clothItem">
+          {{#items}}
+          <li>
+            ID: {{ id }} </br>
             {{ type }}/{{ brand }}/{{ url }}
             <a href="./myclothing/delete/{{id}}">
-            <img src="./delete.png" alt="deleteButton">
-        </a>
-              <!-- <img src="./delete.png" href="./myclothing/delete/{{ id }}" alt=""> -->
-            </li>
-            <form method="GET" action="./myclothing/delete/{{ id }}" class="form-inline" id="deleteBtn">
-                <input type="submit" value="Delete" />
-              </form> 
-            {{/items}}
-          </ul>
-        </div>
+              <img src="./delete.png" alt="deleteButton">
+            </a>
+            <!-- <img src="./delete.png" href="./myclothing/delete/{{ id }}" alt=""> -->
+          </li>
+          <form method="GET" action="./myclothing/delete/{{ id }}" class="form-inline" id="deleteBtn">
+            <input type="submit" value="Delete" />
+          </form>
+          {{/items}}
+        </ul>
       </div>
     </div>
-    <form method="GET" action="http://localhost:3000/myclothing">
-      <input type="submit" value="Get Data" />
-    </form>
-    <ul class="nav nav-pills">
-            <li class="active"><a href="./myclothing">All</a></li>
-            <li><a href="./myclothing/pants">Pants</a></li>
-            <li><a href="./myclothing/t-shirts">T-shirts</a></li>
-            <li><a href="./myclothing/jackets">Jackets</a></li>
-            <li><a href="./myclothing/socks">socks</a></li>
-        </ul>
-  </body>
+  </div>
+  <form method="GET" action="http://localhost:3000/myclothing">
+    <input type="submit" value="Get Data" />
+  </form>
+
+</body>
+
 </html>

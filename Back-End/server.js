@@ -9,11 +9,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 let mustacheExpress = require("mustache-express");
 app.engine("html", mustacheExpress());
 app.set("view engine", "html");
-app.set("views", "/Users/mike/documents/ClothingApp/Front-End");
-//app.set('views', __dirname + '..\\..\\Front-End');
-//app.use(express.static(__dirname + "..\\..\\public"));
-app.use(express.static("/Users/mike/documents/ClothingApp/public"));
-app.use(express.static("/Users/mike/documents/ClothingApp/public/images"));
+// app.set("views", "/Users/mike/documents/ClothingApp/Front-End");
+
+/**This is for loading files when I am on pc */
+app.set('views', __dirname + '..\\..\\Front-End');
+app.use(express.static(__dirname + '..\\..\\public'));
+app.use(express.static(__dirname + '..\\..\\public\\images'));
+
+/*This is for loading files when I am using my mac */
+
+// app.use(express.static(__dirname + "..\\..\\public"));
+// app.use(express.static("/Users/mike/documents/ClothingApp/public"));
+// app.use(express.static("/Users/mike/documents/ClothingApp/public/images"));
+
+
 let connection = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -22,8 +31,8 @@ let connection = mysql.createConnection({
 });
 connection.connect();
 
-app.route("/").get(function(req, res) {
-  connection.query("Select * from clothing", function(err, results) {
+app.route("/").get(function (req, res) {
+  connection.query("Select * from clothing", function (err, results) {
     if (err) throw err;
     else {
       res.render("index", { items: results });
@@ -32,19 +41,19 @@ app.route("/").get(function(req, res) {
 });
 app
   .route("/myclothing")
-  .get(function(req, res) {
-    connection.query("Select * from clothing", function(err, results) {
+  .get(function (req, res) {
+    connection.query("Select * from clothing", function (err, results) {
       if (err) throw err;
       else {
         res.redirect("/");
       }
     });
   })
-  .post(function(req, res) {
+  .post(function (req, res) {
     console.log("CUrrently Inserting");
     let param = [];
     let picPath = ["C:\\Users\\jiayao.wong\\Pictures\\CLothingAppPictures\\"];
-    var output = picPath.map(function(i) {
+    var output = picPath.map(function (i) {
       return i.replace(/\\/g, "/").replace(/^dist\//, "");
     });
     param[0] = req.body.Type;
@@ -55,7 +64,7 @@ app
     connection.query(
       "insert into clothing(type,brand,url,img) values(?,?,?,?)",
       param,
-      function(err, results) {
+      function (err, results) {
         if (err) throw err;
         else {
           console.log(results);
@@ -64,11 +73,11 @@ app
     );
     res.redirect("/");
   });
-app.route("/myclothing/delete/:id").get(function(req, res) {
+app.route("/myclothing/delete/:id").get(function (req, res) {
   console.log(req.params.id);
   console.log("--Deleted");
 
-  connection.query("DELETE FROM clothing where id=?", req.params.id, function(
+  connection.query("DELETE FROM clothing where id=?", req.params.id, function (
     err,
     results
   ) {
@@ -79,15 +88,15 @@ app.route("/myclothing/delete/:id").get(function(req, res) {
   });
   res.redirect("/");
 });
-app.get("/myclothing/:clothingType", function(req, res) {
+app.get("/myclothing/:clothingType", function (req, res) {
   console.log("Fetching :" + req.params.clothingType);
   connection.query(
     "Select * from clothing where type = ?",
     req.params.clothingType,
-    function(err, result) {
+    function (err, result) {
       console.log(result);
+      res.render("index", { items: result });
     }
   );
-  res.redirect("/");
 });
 app.listen(3000);
