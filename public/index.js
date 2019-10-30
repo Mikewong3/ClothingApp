@@ -21,3 +21,17 @@ function deleteItem(id) {
   HTTP.send();
   HTTP.onreadystatechange = function(res) {};
 }
+// function displayImg() {
+//   var preview = document.getElementById("imgPreview");
+//   var file = document.getElementById(clothingIMG).files[0];
+//   var reader = new FileReader();
+
+//   reader.onloadend = function() {
+//     preview.src = reader.result;
+//   };
+//   if (file) {
+//     reader.readAsDataURL(file);
+//   } else {
+//     preview.src = "";
+//   }
+// }
