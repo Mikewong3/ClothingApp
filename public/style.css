@@ -1,3 +1,30 @@
-#test{
-    background-color: red; 
+#addForm {
+  box-shadow: 13px 10px 10px 1px rgba(214, 214, 214, 1);
+  margin: 20px;
+  background-color: #fffafa;
+  padding: 10px;
+}
+#dataContainer {
+  margin: 20px;
+  box-shadow: 13px 10px 10px 1px rgba(214, 214, 214, 1);
+  background-color: #fffafa;
+  padding: 10px;
+  height: max-content;
+  max-height: 275px;
+}
+#dataItem {
+  margin-top: 10px;
+}
+#clothingContainer {
+  background-color: white;
+  border: 2px solid;
+  padding: 10px;
+  margin: 10px;
+}
+#clothItem {
+  list-style-type: none;
+}
+#deleteBtn {
+  float: right;
+  margin-top: 12px;
 }
